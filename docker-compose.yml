@@ -1,0 +1,38 @@
+version: "3.8"
+
+services:
+  wacalls:
+    image: ghcr.io/andrewscyber/wacalls:latest
+    container_name: wacalls
+    restart: unless-stopped
+
+    ports:
+      - "8080:8080"
+
+    volumes:
+      # Dados persistentes: banco SQLite com sessões WhatsApp
+      - wacalls_data:/app/data
+
+    environment:
+      # Token de autenticação — se vazio, desativa auth (não recomendado em prod)
+      WACALLS_TOKEN: ${WACALLS_TOKEN:-}
+      # Configurações opcionais:
+      # MAX_CALLS: 8
+
+    # Saúde do container
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8080/api/sessions"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+volumes:
+  wacalls_data:
+    driver: local

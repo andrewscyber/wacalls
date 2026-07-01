@@ -1,0 +1,35 @@
+# Banco de dados SQLite (contém segredos de sessão WhatsApp — NUNCA commitar)
+*.db
+*.db-shm
+*.db-wal
+
+# Variáveis de ambiente
+.env
+.env.local
+.env.*.local
+
+# Binário compilado
+wacalls
+wacalls.exe
+
+# Node.js
+client/node_modules/
+client/dist/
+node_modules/
+
+# Go
+vendor/
+
+# macOS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Arquivos temporários
+.tmp/
+tmp/

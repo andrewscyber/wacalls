@@ -1,0 +1,39 @@
+# Docker build context — ignora arquivos desnecessários
+
+# Banco de dados local (segredos de sessão WhatsApp)
+*.db
+*.db-shm
+*.db-wal
+
+# Secrets e env
+.env
+.env.*
+!.env.example
+
+# Artefatos de build do Go
+/wacalls
+
+# Artefatos de build do Node
+client/node_modules/
+client/dist/
+node_modules/
+
+# Git e CI — não precisam entrar na imagem
+.git/
+.github/
+.gitignore
+
+# Logs
+*.log
+
+# Testes e dados de desenvolvimento
+**/*_test.go
+internal/voip/media/mlow/testdata/
+
+# Arquivos do macOS / IDE
+.DS_Store
+.vscode/
+.idea/
+
+# Documentação
+README.md
